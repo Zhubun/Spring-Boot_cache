@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.50.138:3306/spring_cache?serverTimezone=Asia/Shanghai&useSSL=true
+    username: root
+    password: zyusiuban123456
+  cache:
+    type: simple
+  #    type: redis
+
+#  redis:
+#    host: 192.168.198.128
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.zhubun.spring_cache.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    com.zhubun.spring_cache.mapper: debug
+#debug: true

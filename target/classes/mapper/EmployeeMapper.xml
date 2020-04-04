@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace为对应接口的文件所在地-->
+<mapper namespace="com.zhubun.spring_cache.mapper.EmployeeMapper">
+    <resultMap id="EmptoDep" type="Employee">
+        <result property="id" column="id"/>
+        <result property="lastName" column="lastName"/>
+        <result property="email" column="email"/>
+        <result property="gender" column="gender"/>
+        <association property="d_id" javaType="Department">
+            <result property="d_id" column="d_id"/>
+            <result property="departmentName" column="departmentName"/>
+        </association>
+    </resultMap>
+    <select id="getEmpByParam" parameterType="Employee" resultMap="EmptoDep">
+        select * from Employee e left join Department d on e.d_id=d.d_id
+        <where>
+            <if test="Employee.id != null">
+                or id = #{Employee.id}
+            </if>
+            <if test="Employee.lastName != null">
+                or lastName = #{Employee.lastName}
+            </if>
+            <if test="Employee.email != null">
+                or email = #{Employee.email}
+            </if>
+            <if test="Employee.d_id != null">
+                or d_id = #{Employee.d_id}
+            </if>
+        </where>
+    </select>
+    <select id="getEmpList" resultMap="EmptoDep">
+        select * from Employee e left join Department d on e.d_id=d.d_id
+    </select>
+    <update id="updateEmp" parameterType="Employee">
+        update Employee set lastName = #{Employee.lastName},
+                            email = #{Employee.email},
+                            gender = #{Employee.gender},
+                            d_id = #{Employee.d_id}
+                        where id = #{Employee.id}
+    </update>
+    <delete id="deleteEmp" parameterType="int">
+        delete from Employee where id = #{id}
+    </delete>
+    <insert id="insertEmp" parameterType="Employee">
+        insert into Employee (id,lastName,email,gender,d_id)
+                        values(#{Employee.id},#{Employee.lastName},#{Employee.email},#{Employee.gender},#{Employee.d_id})
+    </insert>
+</mapper>
