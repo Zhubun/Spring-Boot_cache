@@ -2,6 +2,8 @@ package com.zhubun.spring_cache.controller;
 
 import com.zhubun.spring_cache.pojo.Employee;
 import com.zhubun.spring_cache.service.EmployeeService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,10 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@Api(tags = "用户管理")
 public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
     //查询Employee表
+    @ApiOperation("根据传入参数查询用户,id必须传入")
     @GetMapping("/emp/query")
     //必须传入id,其他可以不传入
     public Employee getEmployee(@RequestParam(value = "id",required = true) Integer id,
@@ -28,22 +32,27 @@ public class EmployeeController {
     }
     //根据id删除employee
     @GetMapping("/emp/delete")
-    public String deleteEmp(@RequestParam(value = "id",required = true)Integer id, Employee employee){
+    @ApiOperation("根据id删除employee,id必须传入")
+
+    public String deleteEmp(@RequestParam(value = "id",required = true)Integer id){
         employeeService.deleteEmp(id);
         return "删除成功";
     }
     //更新employee
     @GetMapping("/emp/update")
-    public Employee updateEmp(@RequestParam(value = "id",required = true)Integer id, Employee employee){
+    @ApiOperation("更新employee")
+    public Employee updateEmp(Employee employee){
         return employeeService.updateEmp(employee);
     }
     //插入employee
     @GetMapping("/emp/insert")
-    public Employee insertEmp(@RequestParam(value = "id",required = true)Integer id, Employee employee){
+    @ApiOperation("插入employee")
+    public Employee insertEmp(Employee employee){
         return employeeService.insertEmp(employee);
     }
     //查询employee表全部
     @GetMapping("/emp/queryall")
+    @ApiOperation("查询employee表全部数据")
     public List<Employee> getEmpList(){
         return employeeService.getEmpList();
     }

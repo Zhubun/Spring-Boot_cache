@@ -4,12 +4,13 @@ spring:
     username: root
     password: zyusiuban123456
   cache:
-    type: simple
-  #    type: redis
-
-#  redis:
-#    host: 192.168.198.128
-
+#    type: simple
+      type: redis
+#
+  redis:
+    host: 192.168.198.128
+  jackson:
+    default-property-inclusion: non_null
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.zhubun.spring_cache.pojo

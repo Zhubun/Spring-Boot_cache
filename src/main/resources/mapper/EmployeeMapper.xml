@@ -9,13 +9,13 @@
         <result property="lastName" column="lastName"/>
         <result property="email" column="email"/>
         <result property="gender" column="gender"/>
-        <association property="d_id" javaType="Department">
-            <result property="d_id" column="d_id"/>
+        <result property="d_id" column="d_id"/>
+        <association property="department" javaType="Department">
             <result property="departmentName" column="departmentName"/>
         </association>
     </resultMap>
     <select id="getEmpByParam" parameterType="Employee" resultMap="EmptoDep">
-        select * from Employee e left join Department d on e.d_id=d.d_id
+        select e.id,e.lastName,e.email,e.gender,e.d_id,d.departmentName from Employee e left join Department d on e.d_id=d.d_id
         <where>
             <if test="Employee.id != null">
                 or id = #{Employee.id}
