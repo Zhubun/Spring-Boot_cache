@@ -9,8 +9,8 @@ spring:
 #
   redis:
     host: 192.168.198.128
-  jackson:
-    default-property-inclusion: non_null
+#  jackson:
+#    default-property-inclusion: non_null
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.zhubun.spring_cache.pojo

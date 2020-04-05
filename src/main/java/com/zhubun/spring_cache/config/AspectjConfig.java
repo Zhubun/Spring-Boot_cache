@@ -38,14 +38,14 @@ public class AspectjConfig {
     }
     //方法成功后调用,参数中result类型必须与方法中返回类型一致,否则不切入
     //更新缓存
-//    @AfterReturning(value = "execution(* com.zhubun.spring_cache.service.EmployeeServiceImpl.*Emp(..))",returning = "result")
+    @AfterReturning(value = "execution(* com.zhubun.spring_cache.service.EmployeeServiceImpl.*Emp(..))",returning = "result")
     public void updateCache(JoinPoint joinPoint,Employee result){
 //        joinpoint.getSignature():(signature是信号,标识的意思):获取被增强的方法相关信息
         String methodName = joinPoint.getSignature().getName();
         logger.info("调用"+methodName);
         logger.info("更新缓存成功");
         Integer id = result.getId();
-        hashOperations.put("emp","emp::"+id,result);
+        hashOperations.delete("emp","emp::"+id);
     }
     //方法成功后调用,参数中result类型必须与方法中返回类型一致,否则不切入
     //删除缓存
