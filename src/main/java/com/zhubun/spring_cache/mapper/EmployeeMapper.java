@@ -14,7 +14,7 @@ public interface EmployeeMapper {
 
     int updateEmp(@Param("Employee") Employee employee);
 
-    int deleteEmp(@Param("id") int id);
+    int deleteEmp(@Param("id") Integer id);
 
     int insertEmp(@Param("Employee") Employee employee);
 

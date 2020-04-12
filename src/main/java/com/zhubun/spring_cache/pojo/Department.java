@@ -13,5 +13,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @ApiModel
 public class Department implements Serializable {
+    @ApiModelProperty("部门编号")Integer d_id;
     @ApiModelProperty("部门名称")String departmentName;
 }

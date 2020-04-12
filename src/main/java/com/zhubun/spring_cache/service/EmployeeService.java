@@ -9,9 +9,9 @@ public interface EmployeeService {
 
     Employee updateEmp(Employee employee);
 
-    int deleteEmp(int id);
+    Employee deleteEmp(Employee employee);
 
     Employee insertEmp(Employee employee);
 
-    List<Employee> getEmpList();
+    List<Employee> getEmpList(Employee employee);
 }

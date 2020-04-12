@@ -1,16 +1,13 @@
-package com.zhubun.spring_cache.service;
+package com.zhubun.spring_cache.service.Impl;
 
 import com.zhubun.spring_cache.mapper.EmployeeMapper;
 import com.zhubun.spring_cache.pojo.Employee;
+import com.zhubun.spring_cache.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-//@CacheConfig(cacheNames = "emp")
+//@CacheConfig(cacheNames = "Emp")
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
@@ -19,9 +16,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
 //    @Cacheable(key = "'emp::['+#employee.id+']'",unless = "#employee.id==null")
     public Employee getEmpByParam(Employee employee) {
-        Employee emp = employeeMapper.getEmpByParam(employee);
-
-        return emp;
+        return employeeMapper.getEmpByParam(employee);
     }
 
     @Override
@@ -36,11 +31,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
 //    @CacheEvict(key = "'emp::['+#id+']'")
-    public int deleteEmp(int id) {
+    public Employee deleteEmp(Employee employee) {
+        Employee empByParam = getEmpByParam(employee);
+        Integer id = empByParam.getId();
         int i = employeeMapper.deleteEmp(id);
         if (i>0)
-            return i;
-        return 0;
+            return empByParam;
+        return null;
 
     }
 
@@ -57,8 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     //    @Cacheable(key = "'emp::all",unless = "#employee.id==null")
 
-    public List<Employee> getEmpList() {
-        List<Employee> empList = employeeMapper.getEmpList();
-        return empList;
+    public List<Employee> getEmpList(Employee employee) {
+        return employeeMapper.getEmpList();
     }
 }

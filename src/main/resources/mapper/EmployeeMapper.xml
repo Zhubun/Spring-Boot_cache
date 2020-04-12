@@ -11,6 +11,7 @@
         <result property="gender" column="gender"/>
         <result property="d_id" column="d_id"/>
         <association property="department" javaType="Department">
+            <result property="d_id" column="d_id"/>
             <result property="departmentName" column="departmentName"/>
         </association>
     </resultMap>

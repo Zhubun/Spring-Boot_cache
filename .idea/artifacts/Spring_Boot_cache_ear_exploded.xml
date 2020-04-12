@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="Spring-Boot_cache:ear exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Spring_Boot_cache_ear_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Spring-Boot_cache/javaeeApplication/javaEEApplication" />
+    </root>
+  </artifact>
+</component>

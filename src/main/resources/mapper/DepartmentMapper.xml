@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace为对应接口的文件所在地-->
+<mapper namespace="com.zhubun.spring_cache.mapper.DepartmentMapper">
+    <select id="getDepByParam" parameterType="int" resultType="Department">
+        select * from Department where d_id = #{d_id}
+    </select>
+    <select id="getDepList" resultType="Department">
+        select * from Department
+    </select>
+    <update id="updateDep" parameterType="Department">
+        update Department set departmentName = #{Department.departmentName}
+                        where d_id = #{Department.d_id}
+    </update>
+    <delete id="deleteDep" parameterType="int">
+        delete from Department where d_id = #{d_id}
+    </delete>
+    <insert id="insertDep" parameterType="Department">
+        insert into Department (d_id,departmentName)
+                        values(#{Department.d_id},#{Department.departmentName})
+    </insert>
+</mapper>

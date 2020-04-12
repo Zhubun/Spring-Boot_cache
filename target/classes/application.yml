@@ -8,14 +8,19 @@ spring:
       type: redis
 #
   redis:
-    host: 192.168.198.128
-  jackson:
-    default-property-inclusion: non_null
+    host: 192.168.198.129
+    password: test
+  elasticsearch:
+    rest:
+      uris: http://192.168.198.129:9200
+      
+#  jackson:
+#    default-property-inclusion: non_null
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.zhubun.spring_cache.pojo
-  configuration:
-    map-underscore-to-camel-case: true
+#  configuration:
+#    map-underscore-to-camel-case: true
 logging:
   level:
     com.zhubun.spring_cache.mapper: debug
